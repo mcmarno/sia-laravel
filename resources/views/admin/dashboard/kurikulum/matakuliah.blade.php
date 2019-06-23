@@ -47,8 +47,7 @@
                         <th>Nama</th>                        
                         <th>Kurikulum </th>
                         <th>SKS</th>                    
-                        <th>Prodi</th>                            
-                        <th>Jurusan</th>
+                        <th>Prodi</th>
                         <th>Semester</th>                            
                        
                       </tr>
@@ -61,7 +60,6 @@
                         <td>{{$itemKurikulum->kurNama}}</td>
                         <td>{{$itemKurikulum->mkkurJumlahSks}}</td>
                         <td>{{$itemKurikulum->prodiNama}}</td>
-                        <td>{{$itemKurikulum->jurNama}}</td>
                         <td>{{$itemKurikulum->mkkurSemester}}</td>
                       </tr>
                       <?php endforeach  ?> 

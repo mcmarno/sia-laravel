@@ -12,7 +12,7 @@ use Validator;
 //use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Prodi as Prodi;
-use App\Jurusan as Jurusan;
+//use App\Jurusan as Jurusan;
 
 class ProdiController extends Controller
 {
@@ -28,13 +28,12 @@ class ProdiController extends Controller
    */
   public function index()
   {
-    $jurusan = Jurusan::orderBy('jurKode')->get();
+    //$jurusan = Jurusan::orderBy('jurKode')->get();
     $data = array('prodi' => Prodi::all());
 
    
-    return view('admin.dashboard.prodi.prodi',$data)
-          ->with('listjurusan', $jurusan);
-
+    return view('admin.dashboard.prodi.prodi',$data);
+          
     //return view('admin.dashboard.jurusan');
   }
 
@@ -59,14 +58,12 @@ class ProdiController extends Controller
             'prodiKode.required'    => 'Kode Program Studi dibutuhkan.',
             'prodiKode.unique'      => 'Kode Program Studi sudah digunakan.',
             'prodiNama.required'    => 'Nama Program Studi dibutuhkan.',
-            'prodiJurKode.required' => 'Kita membutuhkan Kode Jurusan asal Program Studi .',
-            'prodiJjarKode.required'=> 'Inisial Program Studi dibutuhkan',
+            'prodiJjarKode.required'  => 'Jenjang Program Studi dibutuhkan.',
             'prodiKodeLabel.required'    => 'Nama Program Studi dibutuhkan.',
         ];
         return Validator::make($data, [
             'prodiKode' => 'required|unique:program_studi',
             'prodiNama' => 'required|max:60',
-            'prodiJurKode' => 'required',
             'prodiJjarKode' =>'required',
             'prodiKodeLabel' => 'required'
         ], $messages);
@@ -83,7 +80,6 @@ class ProdiController extends Controller
 
         $prodi = new Prodi();
         $prodi->prodiKode         = $data['prodiKode'];
-        $prodi->prodiKodeJurusan  = $data['prodiJurKode'];
         $prodi->prodiNama         = $data['prodiNama'];
         $prodi->prodiJjarKode     = $data['prodiJjarKode'];
         $prodi->prodiKodeLabel    = $data['prodiKodeLabel'];
@@ -123,10 +119,8 @@ class ProdiController extends Controller
     {
 
         $data = Prodi::find($id);
-        $jurusan = Jurusan::orderBy('jurKode')->get();
 
-        return view('admin.dashboard.prodi.editprodi',$data)
-                ->with('listjurusan', $jurusan);
+        return view('admin.dashboard.prodi.editprodi',$data);
     }
 
     public function simpanedit($id)
@@ -135,7 +129,6 @@ class ProdiController extends Controller
         $messages = [
             'prodiKode.required'      => 'Kode Program Studi dibutuhkan.',            
             'prodiNama.required'      => 'Nama Program Studi dibutuhkan.',
-            'prodiJurKode.required'   => 'Kita membutuhkan Kode Jurusan asal Program Studi .',
             'prodiJjarKode.required'  => 'Jenjang Program Studi dibutuhkan.',
             'prodiKodeLabel.required' => 'Inisial Program Studi dibutuhkan.'
         ];
@@ -144,7 +137,6 @@ class ProdiController extends Controller
         $validator = Validator::make($input, [
                           'prodiKode' => 'required',
                           'prodiNama' => 'required|max:60',
-                          'prodiJurKode' => 'required',
                           'prodiJjarKode' => 'required',
                           'prodiKodeLabel' => 'required',
                       ], $messages);
@@ -160,7 +152,6 @@ class ProdiController extends Controller
         $editProdi->prodiNama = $input['prodiNama'];
         $editProdi->prodiJjarKode = $input['prodiJjarKode'];
         $editProdi->prodiKodeLabel = $input['prodiKodeLabel'];
-        $editProdi->prodiKodeJurusan =  Input::get('prodiJurKode');
         if (! $editProdi->save())
           App::abort(500);
 

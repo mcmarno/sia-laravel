@@ -70,20 +70,6 @@
                       </div>
    
                       <div class="form-group">
-                          <label class="col-md-4 control-label">Jurusan</label>
-                          <div class="col-md-6">
-                              <select class="form-control" name="prodiJurKode">
-                                
-                                  @foreach ($listjurusan as $itemjurusan)
-                                  <option @if ($itemjurusan->jurKode == $prodiKodeJurusan) selected @endif}}" value="{{$itemjurusan->jurKode}}">{{$itemjurusan->jurNama}}</option>
-                                  @endforeach
-                              </select>
-                              
-                              <small class="help-block"></small>
-                          </div>
-                      </div>
-   
-                      <div class="form-group">
                           <div class="col-md-6 col-md-offset-4">
                               <button type="submit" class="btn btn-primary" id="button-reg">
                                   Simpan

@@ -20,10 +20,9 @@ class AccountController extends Controller
 
     protected function showAccountDosen()
     {
-        $dataUser = Dosen::select(DB::raw("users.id as id, dsnNidn, dsnNip , dsnNama, name, username, password, jurNama, prodiNama, level"))     
+        $dataUser = Dosen::select(DB::raw("users.id as id, dsnNidn, dsnNip , dsnNama, name, username, password, prodiNama, level"))     
             ->leftjoin('users','dsnNip','=','users.username')
             ->join('program_studi', 'program_studi.prodiKode', '=', 'dsnProdiKode')
-            ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
             //->where('users.level','=','3')
             ->orderBy(DB::raw("dsnNama"))        
             ->get();
@@ -82,10 +81,9 @@ class AccountController extends Controller
 
     protected function showAccountMahasiswa()
     {
-        $dataUser = Mahasiswa::select(DB::raw("users.id as id, mhsNim as Nim, mhsNama, name, username, email, password, remember_token, jurNama, prodiNama, level"))     
+        $dataUser = Mahasiswa::select(DB::raw("users.id as id, mhsNim as Nim, mhsNama, name, username, email, password, remember_token, prodiNama, level"))     
             ->leftjoin('users','mhsNim','=','users.username')
             ->join('program_studi', 'program_studi.prodiKode', '=', 'mhsProdiKode')
-            ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
             //->where('users.level','=','3')
             ->orderBy(DB::raw("Nim"))        
             ->get();

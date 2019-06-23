@@ -42,8 +42,7 @@
                     <thead>
                       <tr>                        
                         <th>Kode Kurikulum</th>
-                        <th>Prodi</th>                    
-                        <th>Jurusan</th>                            
+                        <th>Prodi</th>                          
                         <th>Tahun </th>                        
                         <th>Nama </th>
                         <th>Sk Rektor</th>
@@ -55,7 +54,6 @@
                       <tr>
                         <td>{{$itemKurikulum->kurId}}</td>
                         <td>{{$itemKurikulum->prodiNama}}</td>
-                        <td>{{$itemKurikulum->jurNama}}</td>
                         <td>{{$itemKurikulum->kurTahun}}</td>                       
                         <td>{{$itemKurikulum->kurNama}}</td>
                         <td>{{$itemKurikulum->kurNoSkRektor}}</td>

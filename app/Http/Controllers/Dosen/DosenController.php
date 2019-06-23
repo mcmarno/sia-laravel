@@ -25,9 +25,8 @@ class DosenController extends Controller
 
   public function index()
   {
-    $dataDosen = Dosen::select(DB::raw("dsnNidn, dsnNip, dsnNama, dsnJenisKelamin, dsnAlamat, dsnNoTelp, prodiNama, jurNama, photo"))
+    $dataDosen = Dosen::select(DB::raw("dsnNidn, dsnNip, dsnNama, dsnJenisKelamin, dsnAlamat, dsnNoTelp, prodiNama, photo"))
         ->join('program_studi', 'program_studi.prodiKode', '=', 'dosen.dsnProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->orderBy(DB::raw("prodiKode"))        
         ->get();
     $prodi = Prodi::orderBy('prodiKode')->get();   
@@ -37,9 +36,8 @@ class DosenController extends Controller
   }
   public function detail($dsnNidn)
   {
-    $dataDosen = Dosen::select(DB::raw("dsnNidn, dsnNip, dsnNama, dsnJenisKelamin, dsnAlamat, dsnNoTelp, prodiNama, jurNama, photo"))
+    $dataDosen = Dosen::select(DB::raw("dsnNidn, dsnNip, dsnNama, dsnJenisKelamin, dsnAlamat, dsnNoTelp, prodiNama, photo"))
         ->join('program_studi', 'program_studi.prodiKode', '=', 'dosen.dsnProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->where('dsnNidn','=',$dsnNidn)
         ->orderBy(DB::raw("prodiKode"))        
         ->get();

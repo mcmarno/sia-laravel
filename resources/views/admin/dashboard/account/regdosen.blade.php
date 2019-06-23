@@ -29,7 +29,6 @@
                         <th>Nama</th>
                         <th>Username</th> 
                         <th>Prodi</th>
-                        <th>Jurusan</th>
                         <th>Level</th>    
                         <th>Aksi</th>
                       </tr>
@@ -42,7 +41,6 @@
                         <td>{{$itemAccount->dsnNama}}</td>
                         <td><span class="label label-success"><i class="fa fa-unlock-alt"> {{$itemAccount->username}} </i></span></td>
                         <td>{{$itemAccount->prodiNama}}</td> 
-                        <td>{{$itemAccount->jurNama}}</td> 
                         <td>@if($itemAccount->level==1)                               
                               <span class="label label-warning"><i class="fa fa-check"> Admin </i></span>
                             @elseif($itemAccount->level==2)

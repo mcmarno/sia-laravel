@@ -67,7 +67,9 @@
                         </tr>
                          <tr>
                           <td>Tanggal Lahir</td>
-                          <td>{{$itemMahasiswa->mhsTanggalLahir}}</td>
+                          <?php $a = $itemMahasiswa->mhsTanggalLahir;
+                          $tanggal = date('d-m-Y', strtotime($a)); ?>
+                          <td><?php echo $tanggal ?></td>
                         </tr>
                          <tr>
                           <td>Alamat</td>
@@ -85,10 +87,7 @@
                           <td>Program Studi</td> 
                           <td>{{$itemMahasiswa->prodiNama}}</td>
                         </tr>                        
-                        <tr>
-                          <td>Jurusan</td> 
-                          <td>{{$itemMahasiswa->jurNama}}</td>                        
-                        </tr>
+                        
                         <tr>
                           <td>Angkatan</td> 
                           <td>{{$itemMahasiswa->mhsAngkatan}}</td>                        

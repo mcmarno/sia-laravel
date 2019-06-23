@@ -26,9 +26,8 @@ class MahasiswaController extends Controller
      
   public function index()
   {
-    $dataMahasiswa = Mahasiswa::select(DB::raw("mahasiswa.mhsNim as Nim, mhsNik,mhsNomerPendaftaran, mhsNama, mhsJenisKelamin,mhsAgama, mhsTempatLahir, mhsTanggalLahir, mhsAlamat, mhsNoTelp, mhsStatusNikah,  prodiNama, jurNama, mhsAngkatan,mhsGolongan, mhsKelompok, mhsKurId, mhsAsalSekolah, mhsNamaOrtu, mhsAlamatOrtu, mhsPekerjaanOrtu, photo"))
+    $dataMahasiswa = Mahasiswa::select(DB::raw("mahasiswa.mhsNim as Nim, mhsNik,mhsNomerPendaftaran, mhsNama, mhsJenisKelamin,mhsAgama, mhsTempatLahir, mhsTanggalLahir, mhsAlamat, mhsNoTelp, mhsStatusNikah,  prodiNama, mhsAngkatan,mhsGolongan, mhsKelompok, mhsKurId, mhsAsalSekolah, mhsNamaOrtu, mhsAlamatOrtu, mhsPekerjaanOrtu, photo"))
         ->join('program_studi', 'program_studi.prodiKode', '=', 'mahasiswa.mhsProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->join('kurikulum','mhsKurId','=','kurikulum.kurId')
         ->orderBy(DB::raw("prodiKode"))        
         ->get();
@@ -43,9 +42,8 @@ class MahasiswaController extends Controller
 
   public function detail($mhsNim)
   {
-    $dataMahasiswa = Mahasiswa::select(DB::raw("mahasiswa.mhsNim as Nim, mhsNik, mhsNomerPendaftaran, mhsNama, mhsJenisKelamin, mhsAgama, mhsTempatLahir, mhsTanggalLahir, mhsAlamat, mhsNoTelp, mhsStatusNikah,  prodiNama, jurNama, mhsAngkatan,mhsGolongan, mhsKelompok, mhsKurId, mhsAsalSekolah, mhsNamaOrtu, mhsAlamatOrtu, mhsPekerjaanOrtu, photo"))
+    $dataMahasiswa = Mahasiswa::select(DB::raw("mahasiswa.mhsNim as Nim, mhsNik, mhsNomerPendaftaran, mhsNama, mhsJenisKelamin, mhsAgama, mhsTempatLahir, mhsTanggalLahir, mhsAlamat, mhsNoTelp, mhsStatusNikah,  prodiNama, mhsAngkatan,mhsGolongan, mhsKelompok, mhsKurId, mhsAsalSekolah, mhsNamaOrtu, mhsAlamatOrtu, mhsPekerjaanOrtu, photo"))
         ->join('program_studi', 'program_studi.prodiKode', '=', 'mahasiswa.mhsProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->join('kurikulum','mhsKurId','=','kurikulum.kurId')
         ->where('mhsNim','=',$mhsNim)
         ->orderBy(DB::raw("prodiKode"))        

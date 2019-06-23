@@ -65,10 +65,7 @@
                           <td>Program Studi</td> 
                           <td>{{$itemDosen->prodiNama}}</td> 
                         </tr>
-                        <tr>
-                          <td>Jurusan</td> 
-                          <td>{{$itemDosen->jurNama}}</td>                        
-                        </tr>
+                        
                         
                       </tbody>
                       

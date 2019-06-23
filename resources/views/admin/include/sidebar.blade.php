@@ -10,7 +10,6 @@
                 <i class="fa fa-dashboard"></i> <span>Program Studi</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{URL::to('jurusan')}}"><i class="fa fa-circle-o"></i> Jurusan </a></li>
                 <li><a href="{{URL::to('prodi')}}"><i class="fa fa-circle-o"></i> Program Studi </a></li>
                
               </ul>

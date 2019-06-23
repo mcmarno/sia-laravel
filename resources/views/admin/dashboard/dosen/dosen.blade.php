@@ -48,8 +48,7 @@
                         <th>Jenis Kelamin</th>
                         <th>Alamat</th>
                         <th>No Telp</th>              
-                        <th>Program Studi</th>                        
-                        <th>Jurusan</th> 
+                        <th>Program Studi</th> 
                         <th>Aksi</th> 
                       </tr>
                     </thead>
@@ -63,7 +62,6 @@
                         <td>{{$itemDosen->dsnAlamat}}</td>
                         <td>{{$itemDosen->dsnNoTelp}}</td>
                         <td>{{$itemDosen->prodiNama}}</td> 
-                        <td>{{$itemDosen->jurNama}}</td> 
                         <td>
                           <a href="{{{ URL::to('dosen/'.$itemDosen->dsnNidn.'/detail') }}}">
                               <span class="label label-info"><i class="fa fa-list"> </i></span>
@@ -87,7 +85,6 @@
                         <th>Alamat</th>                            
                         <th>No Telp</th>
                         <th>Program Studi</th>
-                        <th>Jurusan</th>  
                         <th>Aksi</th>
                       </tr>
                     </tfoot>

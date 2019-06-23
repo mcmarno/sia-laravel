@@ -29,9 +29,8 @@ class KurikulumController extends Controller
    */
   public function index()
   {
-    $dataKurikulum = Kurikulum::select(DB::raw("kurId, prodiNama,jurNama, kurTahun, kurNoSkRektor, kurNama"))
+    $dataKurikulum = Kurikulum::select(DB::raw("kurId, prodiNama, kurTahun, kurNoSkRektor, kurNama"))
         ->join('program_studi', 'program_studi.prodiKode', '=', 'kurikulum.kurProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->orderBy(DB::raw("kurId, kurProdiKode"))        
         ->get();
         
@@ -95,10 +94,9 @@ class KurikulumController extends Controller
 
   public function matakuliah()
   {
-    $dataKurikulum = Kurikulum::select(DB::raw("mkkurId, mkkurKode, prodiNama,jurNama, kurNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurSemester"))
+    $dataKurikulum = Kurikulum::select(DB::raw("mkkurId, mkkurKode, prodiNama, kurNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurSemester"))
         ->join('matakuliah_kurikulum','mkkurKurId','=','kurikulum.kurId')
         ->join('program_studi', 'program_studi.prodiKode', '=', 'kurikulum.kurProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->orderBy(DB::raw("kurId, kurProdiKode"))        
         ->get();
         
@@ -110,10 +108,9 @@ class KurikulumController extends Controller
 
   public function detail($id)
   {
-    $dataKurikulum = Kurikulum::select(DB::raw("mkkurId, mkkurKode, prodiNama,jurNama, kurNama, mkkurNama, mkkurJumlahSks, mkkurSemester"))
+    $dataKurikulum = Kurikulum::select(DB::raw("mkkurId, mkkurKode, prodiNama, kurNama, mkkurNama, mkkurJumlahSks, mkkurSemester"))
         ->join('matakuliah_kurikulum','mkkurKurId','=','kurikulum.kurId')
         ->join('program_studi', 'program_studi.prodiKode', '=', 'kurikulum.kurProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->where('kurikulum.kurId','=',$id)
         ->orderBy(DB::raw("kurId, kurProdiKode"))        
         ->get();

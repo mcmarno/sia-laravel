@@ -106,7 +106,7 @@
                               <div class="form-group">
                                   <label class="col-md-4 control-label">Tanggal Lahir </label>
                                   <div class="col-md-6">
-                                      <input type="text" class="form-control" name="mhsTanggalLahir" value="{{$mhsTanggalLahir}}">
+                                      <input type="date" class="form-control" name="mhsTanggalLahir" value="{{$mhsTanggalLahir}}">
                                       <small class="help-block"></small>
                                   </div>
                               </div>

@@ -37,7 +37,7 @@
                 </div>
           
          <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
               <div class="box">
                 <div class="box-header">
                   <h3 class="box-title">Data Master Mahasiswa</h3>
@@ -47,8 +47,7 @@
                     <thead>
                       <tr>                        
                         <th>NIM</th>
-                        <th>NAMA</th>                   
-                        <th>Jurusan</th>                            
+                        <th>NAMA</th>                           
                         <th>Kelompok</th>
                         <th>Angkatan</th>  
                         <th>Aksi</th>
@@ -59,7 +58,6 @@
                       <tr>
                         <td>{{$itemMahasiswa->Nim}}</td>
                         <td>{{$itemMahasiswa->mhsNama}}</td>
-                        <td>{{$itemMahasiswa->jurNama}}</td> 
                         <td><font size="4"><span class="{{{($itemMahasiswa->mhsKelompok=='REGULER') ? 'label label-info' : 'label label-warning'}}}">{{$itemMahasiswa->mhsKelompok}}</span></font></td>                 
                         <td>{{$itemMahasiswa->mhsAngkatan}}</td>                        
                         <td><a href="{{{ URL::to('mahasiswa/'.$itemMahasiswa->Nim.'/detail') }}}">
@@ -163,7 +161,7 @@
                               <div class="form-group">
                                   <label class="col-md-4 control-label">Tanggal Lahir </label>
                                   <div class="col-md-6">
-                                      <input type="text" class="form-control" name="mhsTanggalLahir">
+                                      <input type="date" class="form-control" name="mhsTanggalLahir">
                                       <small class="help-block"></small>
                                   </div>
                               </div>

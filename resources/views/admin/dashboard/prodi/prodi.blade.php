@@ -35,13 +35,15 @@
                     <table class="table table-condensed">
                       <tbody><tr>
                         <th style="width: 50px; text-align: center;">Kode </th>
-                        <th>Nama Resmi</th>
+                        <th>Nama Program Studi</th>
+                        <th>Jenjang</th>
                         <th>Aksi</th>
                       </tr>
                       <?php foreach ($prodi as $dataprodi):  ?>
                       <tr id="prodi-list" name="prodi-list">
                           <td style="text-align: center;">{{ $dataprodi->prodiKode}}</td>
                           <td>{{ $dataprodi->prodiNama}}</td>
+                          <td>{{ $dataprodi->prodiJjarKode }}</td>
                           <td><a href="{{{ URL::to('prodi/'.$dataprodi->prodiKode.'/edit') }}}">
                               <span class="label label-warning"><i class="fa fa-edit"> Edit </i></span>
                               </a> </td>
@@ -103,18 +105,7 @@
                                   </div>
                               </div>
            
-                              <div class="form-group">
-                                  <label class="col-md-4 control-label">Jurusan</label>
-                                  <div class="col-md-6 has-error">
-                                      <select class="form-control" name="prodiJurKode">
-                                          @foreach ($listjurusan as $itemjurusan)
-                                          <option value="{{$itemjurusan->jurKode}}">{{$itemjurusan->jurNama}}</option>
-                                          @endforeach
-                                      </select>
-                                      
-                                      <small class="help-block"></small>
-                                  </div>
-                              </div>
+                              
            
                               <div class="form-group">
                                   <div class="col-md-6 col-md-offset-4">

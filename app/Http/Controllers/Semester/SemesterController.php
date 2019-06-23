@@ -60,10 +60,9 @@ class SemesterController extends Controller
 
   public function semesterprodi()
   {
-    $dataSemester = SemesterProdi::select(DB::raw("semId, sempTglMulaiKrs, sempTglSelesaiKrs, sempTglMulaiInputNilai, sempTglSelesaiInputNilai, semTahun, semNmSmtId, sempIsAktif, prodiKode, prodiNama, jurNama"))   
+    $dataSemester = SemesterProdi::select(DB::raw("semId, sempTglMulaiKrs, sempTglSelesaiKrs, sempTglMulaiInputNilai, sempTglSelesaiInputNilai, semTahun, semNmSmtId, sempIsAktif, prodiKode, prodiNama"))   
         ->join('semester', 'semester_prodi.sempSemId', '=', 'semester.semId')
         ->join('program_studi', 'program_studi.prodiKode', '=', 'semester_prodi.semProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')     
         ->orderBy(DB::raw("semId,prodiKode"))        
         ->get();
         
@@ -73,10 +72,9 @@ class SemesterController extends Controller
 
   public function matakuliah()
   {
-    $dataKurikulum = Kurikulum::select(DB::raw("mkkurKode, prodiNama,jurNama, kurNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurJumlahSksTeori, mkkurJumlahSksPraktek"))
+    $dataKurikulum = Kurikulum::select(DB::raw("mkkurKode, prodiNama, kurNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurJumlahSksTeori, mkkurJumlahSksPraktek"))
         ->join('matakuliah_kurikulum','mkkurKurId','=','kurikulum.kurId')
         ->join('program_studi', 'program_studi.prodiKode', '=', 'kurikulum.kurProdiKode')
-        ->join('jurusan','prodiKodeJurusan','=','jurusan.jurKode')
         ->orderBy(DB::raw("kurId, kurProdiKode"))        
         ->get();
         
