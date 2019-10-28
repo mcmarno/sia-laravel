@@ -62,17 +62,7 @@
                       </tr>
                       <?php endforeach  ?> 
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>NIM</th>
-                        <th>Nama</th>
-                        <th>Username</th>                        
-                        <th>Prodi</th>
-                        <th>Jurusan</th>
-                        <th>Level</th>    
-                        <th>Aksi</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

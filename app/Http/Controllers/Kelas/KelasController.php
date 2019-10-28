@@ -17,7 +17,7 @@ use App\Semester as Semester;
 use App\KrsDetail as KrsDetail;
 use App\Prodi as Prodi;
 use App\Mahasiswa as Mahasiswa;
-//use App\Matakuliah as Matakuliah;
+use App\Matakuliah as Matakuliah;
 use App\Kurikulum as Kurikulum;
 use App\Krs as Krs;
 use App\Dosen as Dosen;
@@ -475,6 +475,53 @@ class KelasController extends Controller
                 ->with('prodi_terpilih', $prodi_terpilih);
 
   }
+  public function jadwal($klsId)
+  {
+
+   $dataKelas = Kelas::select(DB::raw("sempSemId, dsnNidn, dsnNip, dsnNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurSemester,klsId, klsNama, perSatu, perDua, perTiga, perEmpat, perLima, perEnam, perTujuh, perDelapan, perSembilan, perSepuluh, perSebelas, perDuabelas, uts, uas"))   
+   ->join('semester_prodi', 'sempId', '=', 'kelas.klsSempId')
+   ->join('matakuliah_kurikulum','mkkurId','=','kelas.klsMkKurId')
+   ->leftjoin('dosen', 'dosen.dsnNidn', '=', 'kelas.klsDsnNidn')             
+   ->where('klsId','=',$klsId)         
+   ->orderBy(DB::raw("mkkurSemester, klsNama, mkkurKode")) 
+   ->get();
+
+   $listProdi = Prodi::all();
+   return view('admin.dashboard.kelas.jadwal')
+   ->with('kelas', $dataKelas)
+   ->with('listProdi', $listProdi);
+   
+ }
+ 
+
+    public function simpanjadwal($klsId, Request $request)
+    {
+        $input =Input::all();
+
+        $editjadwal = Kelas::find($klsId);
+        $editjadwal->klsId = Input::get('klsId'); //atau bisa $input['prodiKode']
+        $editjadwal->perSatu = $input['perSatu'];
+        $editjadwal->perDua = $input['perDua'];
+        $editjadwal->perTiga = $input['perTiga'];
+        $editjadwal->perEmpat = $input['perEmpat'];
+        $editjadwal->perLima = $input['perLima'];
+        $editjadwal->perEnam = $input['perEnam'];
+        $editjadwal->perTujuh = $input['perTujuh'];
+        $editjadwal->perDelapan = $input['perDelapan'];
+        $editjadwal->perSembilan = $input['perSembilan'];
+        $editjadwal->perSepuluh = $input['perSepuluh'];
+        $editjadwal->perSebelas = $input['perSebelas'];
+        $editjadwal->perDuabelas = $input['perDuabelas'];
+        $editjadwal->uts = $input['uts'];
+        $editjadwal->uas = $input['uas'];
+       
+        if (! $editjadwal->save())
+          App::abort(500);
+
+        return Redirect::action('Kelas\KelasController@showKelasRegister')
+                          ->with('successMessage','jadwal "'.Input::get('klsNama').'" telah berhasil ditambahkan.'); 
+    }
+
 
 }
 

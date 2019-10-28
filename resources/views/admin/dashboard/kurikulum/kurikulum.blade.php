@@ -63,17 +63,7 @@
                       </tr>
                       <?php endforeach  ?> 
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Kode Kurikulum</th>
-                        <th>Prodi</th>                    
-                        <th>Jurusan</th>                            
-                        <th>Tahun </th>                        
-                        <th>Nama </th>
-                        <th>Sk Rektor</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

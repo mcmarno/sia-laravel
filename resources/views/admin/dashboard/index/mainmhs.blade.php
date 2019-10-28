@@ -99,6 +99,7 @@
                         <th>Kode </th>
                         <th width="65%">Matakuliah</th>
                         <th>SKS </th>
+                        <th>Jadwal </th>
                         <th>Nilai</th>                        
                       </tr>
                     </thead>
@@ -110,6 +111,10 @@
                         <td>{{$itemNilai->mkkurKode}}</td>
                         <td>{{$itemNilai->mkkurNama}}</td>
                         <td>{{$itemNilai->mkkurJumlahSks}}</td>
+                        <td><a href="{{{ URL::to('jadwal/'.$itemNilai->klsId.'/jadwal') }}}">
+                              <span class="label label-info"><i class="fa fa-list"> Lihat </i></span>
+                            </a>
+                        </td>
                         <td>{{$itemNilai->krsdtKodeNilai}}</td>
                        
                       </tr>

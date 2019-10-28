@@ -36,7 +36,7 @@
               <th>Tgl Selesai KRS</th>
               <th>Mulai Input Nilai</th>
               <th>Selesai Input Nilai</th>    
-              <th>Aksi</th>
+              <th>Status</th>
             </tr>
           </thead>
           <tbody>
@@ -70,17 +70,7 @@
           </tr>
         <?php endforeach  ?> 
       </tbody>
-      <tfoot>
-        <tr>
-          <th>Kode Semester</th>
-          <th>Prodi</th>
-          <th>Tgl Mulai KRS</th>                        
-          <th>Tgl Selesai KRS</th>                       
-          <th>Tipe (Ganjil/Genap)</th>
-          <th>Status</th>   
-          <th>Aksi</th>
-        </tr>
-      </tfoot>
+     
     </table>
   </div><!-- /.box-body -->
 </div><!-- /.box -->

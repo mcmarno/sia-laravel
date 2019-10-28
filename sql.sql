@@ -38,21 +38,6 @@ CREATE TABLE `dosen` (
 
 insert  into `dosen`(dsnNidn,dsnNip,dsnNama,dsnJenisKelamin,dsnNoTelp,dsnAlamat,dsnProdiKode,photo) values (1111111111,2147483647,'aaaaaaaaa','Laki - Laki',11111111,'aaaaaaaa',1,'2019-06-19.a.png');
 
-/*Table structure for table `jadwal_kpt` */
-
-DROP TABLE IF EXISTS `jadwal_kpt`;
-
-CREATE TABLE `jadwal_kpt` (
-  `id` int(11) NOT NULL,
-  `pertemuan1` datetime DEFAULT NULL,
-  `pertemuan2` datetime DEFAULT NULL,
-  `responsi` datetime DEFAULT NULL,
-  `uas` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-/*Data for the table `jadwal_kpt` */
-
 /*Table structure for table `kelas` */
 
 DROP TABLE IF EXISTS `kelas`;
@@ -64,6 +49,20 @@ CREATE TABLE `kelas` (
   `klsSempId` int(11) DEFAULT NULL,
   `klsNama` varchar(20) DEFAULT NULL,
   `klsGolongan` varchar(10) DEFAULT NULL,
+  `perSatu` date DEFAULT NULL,
+  `perDua` date DEFAULT NULL,
+  `perTiga` date DEFAULT NULL,
+  `perEmpat` date DEFAULT NULL,
+  `perLima` date DEFAULT NULL,
+  `perEnam` date DEFAULT NULL,
+  `perTujuh` date DEFAULT NULL,
+  `perDelapan` date DEFAULT NULL,
+  `perSembilan` date DEFAULT NULL,
+  `perSepuluh` date DEFAULT NULL,
+  `perSebelas` date DEFAULT NULL,
+  `perDuabelas` date DEFAULT NULL,
+  `uts` date DEFAULT NULL,
+  `uas` date DEFAULT NULL,
   PRIMARY KEY (`klsId`),
   KEY `fk_kelas_1_idx` (`klsMkKurId`),
   KEY `fk_kelas_2_idx` (`klsDsnNidn`),
@@ -71,11 +70,11 @@ CREATE TABLE `kelas` (
   CONSTRAINT `fk_kelas_1` FOREIGN KEY (`klsMkKurId`) REFERENCES `matakuliah_kurikulum` (`mkkurId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_kelas_2` FOREIGN KEY (`klsDsnNidn`) REFERENCES `dosen` (`dsnNidn`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_kelas_3` FOREIGN KEY (`klsSempId`) REFERENCES `semester_prodi` (`sempId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kelas` */
 
-insert  into `kelas`(klsId,klsMkKurId,klsDsnNidn,klsSempId,klsNama,klsGolongan) values (3,1,1111111111,34,'MI4','KPT');
+insert  into `kelas`(klsId,klsMkKurId,klsDsnNidn,klsSempId,klsNama,klsGolongan,perSatu,perDua,perTiga,perEmpat,perLima,perEnam,perTujuh,perDelapan,perSembilan,perSepuluh,perSebelas,perDuabelas,uts,uas) values (4,1,1111111111,38,'MI4','KPT','2000-12-21','2019-10-01','2019-10-01','2019-10-03','2019-10-04','2019-10-11','2019-10-03','2019-10-10','2019-10-04','2019-10-05','2019-10-05','2019-10-15','2019-10-18','2019-10-26'),(5,2,1111111111,38,'MI4','KPT','2000-12-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(6,3,1111111111,40,'MI4','KPT',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `kode_nilai` */
 
@@ -108,11 +107,11 @@ CREATE TABLE `krs` (
   KEY `fk_krs_2_idx` (`krsSempId`),
   CONSTRAINT `fk_krs_1` FOREIGN KEY (`krsNim`) REFERENCES `mahasiswa` (`mhsNim`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_krs_2` FOREIGN KEY (`krsSempId`) REFERENCES `semester_prodi` (`sempId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `krs` */
 
-insert  into `krs`(krsId,krsSempId,krsNim,krsPaketSem,krsTglTransaksi) values (3,34,'111111111',1,'2019-06-19');
+insert  into `krs`(krsId,krsSempId,krsNim,krsPaketSem,krsTglTransaksi) values (4,38,'111111111',1,'2019-07-06'),(5,40,'111111111',2,'2019-07-17'),(6,38,'111111111',3,'2019-10-28');
 
 /*Table structure for table `krs_detail` */
 
@@ -129,11 +128,11 @@ CREATE TABLE `krs_detail` (
   KEY `fk_krs_detail_2_idx` (`krsKlsId`),
   CONSTRAINT `fk_krs_detail_1` FOREIGN KEY (`krsdtKrsId`) REFERENCES `krs` (`krsId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_krs_detail_2` FOREIGN KEY (`krsKlsId`) REFERENCES `kelas` (`klsId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `krs_detail` */
 
-insert  into `krs_detail`(krsdtId,krsdtKrsId,krsdtBobotNilai,krsdtKodeNilai,krsKlsId) values (3,3,NULL,NULL,3);
+insert  into `krs_detail`(krsdtId,krsdtKrsId,krsdtBobotNilai,krsdtKodeNilai,krsKlsId) values (4,4,NULL,NULL,4),(5,5,NULL,NULL,6),(6,4,NULL,NULL,5);
 
 /*Table structure for table `krs_nilai` */
 
@@ -148,7 +147,7 @@ CREATE TABLE `krs_nilai` (
   PRIMARY KEY (`krsnaId`),
   KEY `fk_krs_nilai_1_idx` (`krsnaKrsDtId`),
   CONSTRAINT `fk_krs_nilai_1` FOREIGN KEY (`krsnaKrsDtId`) REFERENCES `krs_detail` (`krsdtId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `krs_nilai` */
 
@@ -221,11 +220,11 @@ CREATE TABLE `matakuliah_kurikulum` (
   PRIMARY KEY (`mkkurId`),
   KEY `fk_matakuliah_kurikulum_1_idx` (`mkkurKurId`),
   CONSTRAINT `fk_matakuliah_kurikulum_1` FOREIGN KEY (`mkkurKurId`) REFERENCES `kurikulum` (`kurId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `matakuliah_kurikulum` */
 
-insert  into `matakuliah_kurikulum`(mkkurId,mkkurKode,mkkurNama,mkkurKurId,mkkurSemester,mkkurJumlahSks) values (1,'mI1','s',1,1,3);
+insert  into `matakuliah_kurikulum`(mkkurId,mkkurKode,mkkurNama,mkkurKurId,mkkurSemester,mkkurJumlahSks) values (1,'mI1','s',1,1,3),(2,'MI5','mkff',1,1,3),(3,'MI6','aaaa',1,2,2);
 
 /*Table structure for table `migrations` */
 
@@ -285,7 +284,7 @@ CREATE TABLE `semester` (
 
 /*Data for the table `semester` */
 
-insert  into `semester`(semId,semTglMulai,semTglSelesai,semTahun,semNmSmtId,semStatus,semKeterangan) values (20181,'2018-08-08','2019-01-01','2018/2019',1,0,'2018/2019 GANJIL'),(20182,'2018-10-10','2019-03-12','2018/2019',2,1,'2018/2019 GENAP');
+insert  into `semester`(semId,semTglMulai,semTglSelesai,semTahun,semNmSmtId,semStatus,semKeterangan) values (1,'2019-07-06','2019-10-05','2019',2,1,'a'),(12,'2019-07-18','2019-07-27','2019',2,0,'aa');
 
 /*Table structure for table `semester_prodi` */
 
@@ -305,11 +304,11 @@ CREATE TABLE `semester_prodi` (
   KEY `fk_semester_prodi_2_idx` (`semProdiKode`),
   CONSTRAINT `fk_semester_prodi_1` FOREIGN KEY (`sempSemId`) REFERENCES `semester` (`semId`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `fk_semester_prodi_2` FOREIGN KEY (`semProdiKode`) REFERENCES `program_studi` (`prodiKode`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*Data for the table `semester_prodi` */
 
-insert  into `semester_prodi`(sempId,sempSemId,sempTglMulaiKrs,sempTglSelesaiKrs,sempTglMulaiInputNilai,sempTglSelesaiInputNilai,sempIsAktif,semProdiKode) values (34,20182,'2019-06-19','2019-07-03','2019-10-09','2019-11-06',1,1),(35,20182,'2019-06-19','2019-07-03','2019-10-09','2019-11-06',1,2);
+insert  into `semester_prodi`(sempId,sempSemId,sempTglMulaiKrs,sempTglSelesaiKrs,sempTglMulaiInputNilai,sempTglSelesaiInputNilai,sempIsAktif,semProdiKode) values (36,NULL,'2019-07-06','2019-07-20','2019-10-26','2019-11-23',0,1),(37,NULL,'2019-07-06','2019-07-20','2019-10-26','2019-11-23',0,2),(38,1,'2019-07-06','2019-07-20','2019-10-26','2019-11-23',1,1),(39,1,'2019-07-06','2019-07-20','2019-10-26','2019-11-23',1,2),(40,12,'2019-07-17','2019-07-31','2019-11-06','2019-12-04',0,1),(41,12,'2019-07-17','2019-07-31','2019-11-06','2019-12-04',0,2);
 
 /*Table structure for table `users` */
 
@@ -327,11 +326,11 @@ CREATE TABLE `users` (
   `level` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(id,name,username,email,password,remember_token,created_at,updated_at,level) values (4,'admin','admin','admin@gmail.com','$2y$10$/ksTXyJ2EAyzjliAkonhnewNjNj3BX8e3gnJgmVIso2Up8ydeA/cy','e3FZHqnyJFmo03ZFoH4V8ByKgzGGpJzNpWSGjFdv3Y7xJRrLB965Y0QJB9cj','2016-03-03 10:35:28','2019-04-05 12:33:22',1),(74,'','11220109','','$2y$10$1DiYeDf4DEvBWpj3Qh2zheBcwA7P/NyrygnmhvOYMcZ3gPOD4aZS.','WjmahFfF4ESA93m96BlkqBRs0FHagQ8RH13Z9yODwwfPpmGdn3Cuu11oTAX4','2016-08-21 10:21:21','2016-08-27 17:14:04',2),(78,'','M.09.15.01','','$2y$10$YRXWOgIcudTAn0lwhDN7eupqrV0Jp1DLnEujC9CPP5GeWFl/EXlzO','GAmLerVoOYwCTE0T4vYdwTLH1NRUEkIkEZhMeam8Tp4iJ4nJ8pxDdoCBW58b','2016-08-27 17:15:36','2018-11-27 03:47:01',3),(79,'','M.09.15.05','','$2y$10$2hUsHLdNQ7n9ZAmeRHnoreCRbAJf8LTERztCSVngmDXTCzlgKd8WG',NULL,'2018-11-27 04:11:29','2018-11-27 04:11:29',3),(80,'','17','','$2y$10$bPBCfaRwhw4G93tQyahNlOVM7leXDNTVfnnfbmlGK7o/xp0QVZmwe','odsJ8xVQJ3zoEGmzJN5jKk3j6OvMEq1X3dlB6ezBHclL4B6BzABRbnBosZdt','2018-12-15 11:55:01','2018-12-15 11:56:07',2),(81,'','987654321','','$2y$10$rEAmtL728KDPoywD.i4i8u3D9i9HZg8achPfna45I3u2ijjmB0GGO','InJRadjdVXLvorYh8SdfTiQR16KxhxYosxHeCfPbx5HYYjrjsH7ue0IDGC8K','2019-01-02 12:40:35','2019-02-08 16:14:27',2),(82,'','1540033023','','$2y$10$9TYdMooFvDHqxNe9h52nU./oLvOyqOGSoriX3uZiu54LZjh6cpYBC','12uFJeBH5RYzQWL6bB25KZuJCKjZ23EHmGJxvpCyXp5DROD7oOIkdsY4b2TR','2019-01-25 06:48:59','2019-02-24 12:09:30',3),(86,'','123','','$2y$10$xbJcDAfs3H5GFQca.YXpZ.aGL7RYBjhx2z/NmMh.RewBjnVSfcP7e','C7FzwK95m5EwLvdbGesUu8UfS5P5cYc2wObzBmnFgaLrY0K8Z7mxsJUYTUg4','2019-02-08 15:55:52','2019-02-24 12:12:10',2),(87,'','1','','$2y$10$bAG1XmKGTuIBSu.XdDZneeab0WglOm7bjbCIRxgOmscduMJvdUgie','Koy1wer5gxI51A5qCmIAP0m6D7PV2iCBWugEHiKOqWmDCmI8UdoNejUEWqRX','2019-02-08 17:24:40','2019-04-04 14:19:10',2),(88,'','111111111','','$2y$10$myxMamNKpoJVidBASIgjK.kSC/yc7kwBVZIw0PR3S9jrz3zRbuaUm',NULL,'2019-06-19 05:57:58','2019-06-19 05:57:58',3),(89,'','2147483647','','$2y$10$.Uv2jBPbfoGlMCA7e5rxPOdeQRx/rFv9jQCg1l9.pvhNLzNma8Y16',NULL,'2019-06-19 05:58:18','2019-06-19 05:58:18',2);
+insert  into `users`(id,name,username,email,password,remember_token,created_at,updated_at,level) values (4,'admin','admin','admin@gmail.com','$2y$10$/ksTXyJ2EAyzjliAkonhnewNjNj3BX8e3gnJgmVIso2Up8ydeA/cy','jjsXxRB7gFJ9ni9I6uD1auTdY7HeHrzJS20W1TTDfmYiBQfQjs0ATUzASaQj','2016-03-03 10:35:28','2019-10-28 16:31:26',1),(74,'','11220109','','$2y$10$1DiYeDf4DEvBWpj3Qh2zheBcwA7P/NyrygnmhvOYMcZ3gPOD4aZS.','WjmahFfF4ESA93m96BlkqBRs0FHagQ8RH13Z9yODwwfPpmGdn3Cuu11oTAX4','2016-08-21 10:21:21','2016-08-27 17:14:04',2),(78,'','M.09.15.01','','$2y$10$YRXWOgIcudTAn0lwhDN7eupqrV0Jp1DLnEujC9CPP5GeWFl/EXlzO','GAmLerVoOYwCTE0T4vYdwTLH1NRUEkIkEZhMeam8Tp4iJ4nJ8pxDdoCBW58b','2016-08-27 17:15:36','2018-11-27 03:47:01',3),(79,'','M.09.15.05','','$2y$10$2hUsHLdNQ7n9ZAmeRHnoreCRbAJf8LTERztCSVngmDXTCzlgKd8WG',NULL,'2018-11-27 04:11:29','2018-11-27 04:11:29',3),(80,'','17','','$2y$10$bPBCfaRwhw4G93tQyahNlOVM7leXDNTVfnnfbmlGK7o/xp0QVZmwe','odsJ8xVQJ3zoEGmzJN5jKk3j6OvMEq1X3dlB6ezBHclL4B6BzABRbnBosZdt','2018-12-15 11:55:01','2018-12-15 11:56:07',2),(81,'','987654321','','$2y$10$rEAmtL728KDPoywD.i4i8u3D9i9HZg8achPfna45I3u2ijjmB0GGO','InJRadjdVXLvorYh8SdfTiQR16KxhxYosxHeCfPbx5HYYjrjsH7ue0IDGC8K','2019-01-02 12:40:35','2019-02-08 16:14:27',2),(82,'','1540033023','','$2y$10$9TYdMooFvDHqxNe9h52nU./oLvOyqOGSoriX3uZiu54LZjh6cpYBC','12uFJeBH5RYzQWL6bB25KZuJCKjZ23EHmGJxvpCyXp5DROD7oOIkdsY4b2TR','2019-01-25 06:48:59','2019-02-24 12:09:30',3),(86,'','123','','$2y$10$xbJcDAfs3H5GFQca.YXpZ.aGL7RYBjhx2z/NmMh.RewBjnVSfcP7e','C7FzwK95m5EwLvdbGesUu8UfS5P5cYc2wObzBmnFgaLrY0K8Z7mxsJUYTUg4','2019-02-08 15:55:52','2019-02-24 12:12:10',2),(87,'','1','','$2y$10$bAG1XmKGTuIBSu.XdDZneeab0WglOm7bjbCIRxgOmscduMJvdUgie','Koy1wer5gxI51A5qCmIAP0m6D7PV2iCBWugEHiKOqWmDCmI8UdoNejUEWqRX','2019-02-08 17:24:40','2019-04-04 14:19:10',2),(93,'','2147483647','','$2y$10$GZ11KLJ3m9103Zwa2rHJnOZspDj.CNy.Zb89fxS5Qa/o6ttwZMC4e',NULL,'2019-09-15 13:00:59','2019-09-15 13:00:59',2),(94,'','111111111','','$2y$10$c/pbiQwx89MG8elVi61pUuKelAWJlPajE1swvxM8jELEiCoVT/fFS','39jFF9Z1kjo0XB3DgarVI9oFg5t7VBXsNLx79UMn9Xw5wYAzx2jx8FxAQgMi','2019-10-28 16:00:37','2019-10-28 16:30:59',3);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

@@ -93,7 +93,8 @@
                         <th width="65%">Matakuliah</th>
                         <th>SKS </th>
                         <th>Semester </th>
-                        <th>Kelas</th>   
+                        <th>Kelas</th>
+                        <th>Jadwal</th>   
                         <th>Aksi</th>                      
                       </tr>
                     </thead>
@@ -107,6 +108,10 @@
                         <td>{{$itemDataAmpu->mkkurJumlahSks}}</td>
                         <td>{{$itemDataAmpu->mkkurSemester}}</td>
                         <td>{{$itemDataAmpu->klsNama}}</td>
+                        <td><a href="{{{ URL::to('jadwaldosen/'.$itemDataAmpu->klsId.'/jadwal') }}}">
+                              <span class="label label-info"><i class="fa fa-list"> Lihat </i></span>
+                            </a>
+                        </td>
                         <td>                           
                             <a class="btn btn-info btn-flat btn-sm" href="{{{ route('pesertakelassemester',[$itemDataAmpu->klsId]) }}}" title="Peserta Matakuliah"><i class="fa fa-list"> </i> Peserta
                             </a> 

@@ -16,6 +16,7 @@ use App\Mahasiswa as Mahasiswa;
 use App\Prodi as Prodi;
 use App\KrsDetail as KrsDetail;
 use App\User as User;
+use App\Kelas as Kelas;
 //use App\Jurusan as Jurusan;
 
 class RoleMhsController extends Controller
@@ -51,7 +52,7 @@ class RoleMhsController extends Controller
 
 //dd($mhsNim);
 
-    $dataNilaiSmt = KrsDetail::select(DB::raw("sempSemId, mkkurKode, mkkurNama, mkkurJumlahSks, dsnNama, mhsNim as Nim, mhsNama, mhsKelompok, krsdtBobotNilai, krsdtKodeNilai"))
+    $dataNilaiSmt = KrsDetail::select(DB::raw("sempSemId, mkkurKode, mkkurNama, mkkurJumlahSks, dsnNama, mhsNim as Nim, mhsNama, mhsKelompok, krsdtBobotNilai, krsdtKodeNilai, klsId"))
         ->join('kelas', 'klsId', '=', 'krsKlsId')
         ->leftjoin('dosen','klsDsnNidn','=','dsnNidn')
         ->join('matakuliah_kurikulum','mkkurId','=','klsMkKurId')
@@ -61,6 +62,7 @@ class RoleMhsController extends Controller
         ->where('sempSemId','=',$semId)
         ->where('krsNim','=',$mhsNim)                
         ->get();
+
     //dd($dataNilaiSmt);
     //cari semester untuk nim tertentu
     $listSmtMhs = $this->cariSmtMhs($mhsNim);
@@ -270,6 +272,24 @@ class RoleMhsController extends Controller
       return redirect()->back();
     }
   }
+
+  public function jadwal($klsId)
+  {
+
+   $dataKelas = Kelas::select(DB::raw("sempSemId, dsnNidn, dsnNip, dsnNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurSemester,klsId, klsNama, perSatu, perDua, perTiga, perEmpat, perLima, perEnam, perTujuh, perDelapan, perSembilan, perSepuluh, perSebelas, perDuabelas, uts, uas"))   
+   ->join('semester_prodi', 'sempId', '=', 'kelas.klsSempId')
+   ->join('matakuliah_kurikulum','mkkurId','=','kelas.klsMkKurId')
+   ->leftjoin('dosen', 'dosen.dsnNidn', '=', 'kelas.klsDsnNidn')             
+   ->where('klsId','=',$klsId)         
+   ->orderBy(DB::raw("mkkurSemester, klsNama, mkkurKode")) 
+   ->get();
+
+   $listProdi = Prodi::all();
+   return view('mahasiswa.jadwal')
+   ->with('kelas', $dataKelas)
+   ->with('listProdi', $listProdi);
+   
+ }
   
 }
 

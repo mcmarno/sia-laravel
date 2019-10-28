@@ -71,7 +71,8 @@
                         <th>NIDN</th>                        
                         <th>Nama Dosen</th>
                         <th>Kelas</th>
-                        <th>Golongan</th>                            
+                        <th>Golongan</th> 
+                        <th>Jadwal</th>                           
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -91,28 +92,16 @@
                         </td>                                           
                         <td><font size="4"><span class="{{{($itemKelas->klsNama=='') ? 'label label-info' : 'label label-warning'}}}">{{$itemKelas->klsNama}}</span></font></td>
                         <td><font size="4"><span class="{{{($itemKelas->klsGolongan=='KPT') ? 'label label-info' : 'label label-warning'}}}">{{$itemKelas->klsGolongan}}</span></font></td>
-                        <td><a href="{{{ URL::to('kelas/'.$itemKelas->klsId.'/peserta') }}}">
-                              <span class="label label-success"><i class="fa fa-list"> Peserta </i></span>
-                            </a>                            
-                        </td>              
-                       
-                        
+                        <td><a href="{{{ URL::to('kelas/'.$itemKelas->klsId.'/jadwal') }}}">
+                              <span class="label label-info"><i class="fa fa-list"> Lihat </i></span>
+                            </a>
+                        </td>
+                        <td><a href="{{{ URL::to('kelas/'.$itemKelas->klsId.'/peserta') }}}"><span class="label label-success"><i class="fa fa-list"> Peserta </i></span></a>
+                        </td> 
                       </tr>
                       <?php endforeach  ?> 
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Thn Semester</th> 
-                        <th>Semester</th> 
-                        <th>Kode Makul</th>
-                        <th>Nama Makul</th>
-                        <th>SKS</th>
-                        <th>NIDN</th>                        
-                        <th>Nama Dosen</th>                            
-                        <th>Kelas</th> 
-                        <th>Aksi</th>
-                      </tr>
-                    </tfoot>
+                   
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

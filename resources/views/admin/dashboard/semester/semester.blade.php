@@ -61,17 +61,7 @@
                       </tr>
                       <?php endforeach  ?> 
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Kode Semester</th>
-                        <th>Tanggal Mulai</th>                        
-                        <th>Tanggal Selesai</th>
-                        <th>Tahun</th>
-                        <th>Nama Semester (Ganjil/Genap)</th>
-                        <th>Status</th>   
-                        <th>Aksi</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
@@ -101,14 +91,14 @@
                               <div class="form-group">
                                   <label class="col-md-4 control-label">Tanggal Mulai </label>
                                   <div class="col-md-6">
-                                      <input type="text" class="form-control" name="semTglMulai">
+                                      <input type="date" class="form-control" name="semTglMulai">
                                       <small class="help-block"></small>
                                   </div>
                               </div>           
                               <div class="form-group">
                                   <label class="col-md-4 control-label">Tanggal Selesai</label>
                                   <div class="col-md-6 has-error">
-                                      <input type="text" class="form-control" name="semTglSelesai">
+                                      <input type="date" class="form-control" name="semTglSelesai">
                                       <small class="help-block"></small>
                                   </div>
                               </div>   

@@ -112,6 +112,8 @@ Route::group(['middleware' => ['web','auth','level:1']], function()
 	Route::post('/kelas/mhsregister/proses', array('as'=>'kelas.mhsregister.proses', 'uses'=>'Kelas\KelasController@kelasMahasiswaRegister'));
 	Route::get('/kelas/register/kelaspeserta', array('as'=>'kelas.klspeserta.proses', 'uses'=>'Kelas\KelasController@registerPesertaKelas'));
 	Route::post('/kelas/tambah/dosen/makul', array('as'=>'kelas.tambah.dosen.makul', 'uses'=>'Kelas\KelasController@tambahDosenMatakuliah'));
+	Route::get('/kelas/{klsId}/jadwal', array('as'=>'kelas.jadwal', 'uses'=>'Kelas\KelasController@jadwal'));
+	Route::put('/kelas/{klsId}/simpanjadwal', array('as'=>'kelas.simpanjadwal', 'uses'=> 'Kelas\KelasController@simpanjadwal'));
 
 	//register Mahasiswa
 	Route::get('/accountmahasiswa', array('as'=>'account.mahasiswa', 'uses'=>'Account\AccountController@showAccountMahasiswa'));
@@ -163,6 +165,7 @@ Route::group(['middleware' => ['web','auth','level:2']], function()
 	//reset password
 	Route::get('reset/password/dosen',['as'=>'reset.password.dosen', 'uses'=> 'RoleDosen\RoleDosenController@formResetPasswordDosen']);
 	Route::post('reset/password/dosen',['as'=>'reset.password.dosen', 'uses'=> 'RoleDosen\RoleDosenController@resetPasswordDosen']);
+	Route::get('/jadwaldosen/{klsId}/jadwal', array('as'=>'jadwal', 'uses'=>'RoleDosen\RoleDosenController@jadwal'));
 
 });
 
@@ -175,6 +178,8 @@ Route::group(['middleware' => ['web','auth','level:3']], function()
 	
 	Route::get('/reset/password/mahasiswa',['as'=>'resetpasswordmahasiswa', 'uses'=> 'RoleMhs\RoleMhsController@formResetPasswordMahasiswa']);
 	Route::post('/reset/password/mahasiswa',['as'=>'resetpasswordmahasiswa', 'uses'=> 'RoleMhs\RoleMhsController@resetPasswordMahasiswa']);
+	Route::get('/jadwal/{klsId}/jadwal', array('as'=>'jadwal', 'uses'=>'RoleMhs\RoleMhsController@jadwal'));
+
 
 	
 });

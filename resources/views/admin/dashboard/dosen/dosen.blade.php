@@ -76,18 +76,7 @@
                       </tr>
                       <?php endforeach  ?> 
                     </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>NIDN</th>
-                        <th>NIP</th>
-                        <th>Nama</th>
-                        <th>Jenis Kelamin</th>                    
-                        <th>Alamat</th>                            
-                        <th>No Telp</th>
-                        <th>Program Studi</th>
-                        <th>Aksi</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
                 </div><!-- /.box-body -->
               </div><!-- /.box -->

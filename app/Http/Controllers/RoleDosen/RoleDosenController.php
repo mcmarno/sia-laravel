@@ -17,7 +17,7 @@ use App\Dosen as Dosen;
 use App\Prodi as Prodi;
 use App\KrsDetail as KrsDetail;
 use App\User as User;
-//use App\Jurusan as Jurusan;
+use App\Kelas as Kelas;
 
 class RoleDosenController extends Controller
 {
@@ -242,6 +242,24 @@ class RoleDosenController extends Controller
       return redirect()->back();
     }
   }
+
+  public function jadwal($klsId)
+  {
+
+   $dataKelas = Kelas::select(DB::raw("sempSemId, dsnNidn, dsnNip, dsnNama, mkkurKode, mkkurNama, mkkurJumlahSks, mkkurSemester,klsId, klsNama, perSatu, perDua, perTiga, perEmpat, perLima, perEnam, perTujuh, perDelapan, perSembilan, perSepuluh, perSebelas, perDuabelas, uts, uas"))   
+   ->join('semester_prodi', 'sempId', '=', 'kelas.klsSempId')
+   ->join('matakuliah_kurikulum','mkkurId','=','kelas.klsMkKurId')
+   ->leftjoin('dosen', 'dosen.dsnNidn', '=', 'kelas.klsDsnNidn')             
+   ->where('klsId','=',$klsId)         
+   ->orderBy(DB::raw("mkkurSemester, klsNama, mkkurKode")) 
+   ->get();
+
+   $listProdi = Prodi::all();
+   return view('dosen.jadwal')
+   ->with('kelas', $dataKelas)
+   ->with('listProdi', $listProdi);
+   
+ }
   
 }
 
