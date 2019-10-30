@@ -14,6 +14,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{{route('kelassemester')}}}"><i class="fa fa-circle-o"></i> Kelas Semester </a></li>
+                <li><a href="{{{URL::to('detaildosen/'.Auth::user()->username.'/detail')}}}"><i class="fa fa-circle-o"></i> Profil </a></li>
                 <li><a href="{{{route('reset.password.dosen')}}}"><i class="fa fa-circle-o"></i> Reset Password </a></li>
                
               </ul>

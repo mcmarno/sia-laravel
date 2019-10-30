@@ -290,6 +290,18 @@ class RoleMhsController extends Controller
    ->with('listProdi', $listProdi);
    
  }
+ public function detail($username)
+  {
+    $dataMahasiswa = Mahasiswa::select(DB::raw("mahasiswa.mhsNim as Nim, mhsNik, mhsNomerPendaftaran, mhsNama, mhsJenisKelamin, mhsAgama, mhsTempatLahir, mhsTanggalLahir, mhsAlamat, mhsNoTelp, mhsStatusNikah,  prodiNama, mhsAngkatan,mhsGolongan, mhsKelompok, mhsKurId, mhsAsalSekolah, mhsNamaOrtu, mhsAlamatOrtu, mhsPekerjaanOrtu, photo"))
+        ->join('program_studi', 'program_studi.prodiKode', '=', 'mahasiswa.mhsProdiKode')
+        ->join('kurikulum','mhsKurId','=','kurikulum.kurId')
+        ->where('mhsNim','=',$username)
+        ->orderBy(DB::raw("prodiKode"))        
+        ->get();
+        
+    $data = array('mahasiswa' => $dataMahasiswa);   
+    return view('mahasiswa.detailmahasiswa',$data);
+  }
   
 }
 

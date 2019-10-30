@@ -41,7 +41,7 @@
 
                </form>
             </div>
-            <div id="loginBox-foot"><font color="white">Copyright &copy; 2018, Manajemen Informatika</font></div>
+            <div id="loginBox-foot"><font color="white">Copyright &copy; 2019, Manajemen Informatika</font></div>
          </div>
         </div>  
    </center>

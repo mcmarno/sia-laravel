@@ -18,6 +18,7 @@
               </a>
               <ul class="treeview-menu collapse">
                 <li><a href="{{{URL::to('nilai/semester')}}}"><i class="fa fa-circle-o"></i> Nilai Semester</a></li>                
+                <li><a href="{{{URL::to('detailmahasiswa/'.Auth::user()->username.'/detail')}}}"><i class="fa fa-circle-o"></i> Profil </a></li>
                 <li><a href="{{{URL::to('reset/password/mahasiswa')}}}"><i class="fa fa-circle-o"></i> Reset Password</a></li>
               </ul>
             </li>

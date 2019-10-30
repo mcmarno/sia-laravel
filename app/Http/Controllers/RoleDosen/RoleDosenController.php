@@ -260,6 +260,17 @@ class RoleDosenController extends Controller
    ->with('listProdi', $listProdi);
    
  }
+ public function detail($username)
+  {
+    $dataDosen = Dosen::select(DB::raw("dsnNidn, dsnNip, dsnNama, dsnJenisKelamin, dsnAlamat, dsnNoTelp, prodiNama, photo"))
+        ->join('program_studi', 'program_studi.prodiKode', '=', 'dosen.dsnProdiKode')
+        ->where('dsnNip','=',$username)
+        ->orderBy(DB::raw("prodiKode"))        
+        ->get();
+        
+    $data = array('dosen' => $dataDosen);   
+    return view('dosen.detaildosen',$data);
+  } 
   
 }
 

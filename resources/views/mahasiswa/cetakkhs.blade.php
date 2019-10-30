@@ -27,7 +27,7 @@
 	</style>
 					<center>
 					<font size="15">KARTU HASIL STUDI <br>
-					POLITEKNIK NEGERI LARASIA INDONESIA<br>
+					STT - STIE WALISONGO GEMPOL, PASURUAN<br>
 					TAHUN AKADEMIK {{substr($semId,0,4)}} / {{substr($semId,0,4)+1}} @if(substr($semId,4,1)==1 ) GASAL @else GENAP @endif</font>
 					<br>
 					<hr>
@@ -97,7 +97,7 @@
                   <table border="0" >                    
 	                  <tr>
 	                    <td width="70%" align="center"></td>
-	                    <td align="left">Indonesia, {{date('d-m-Y')}}</td>	                            
+	                    <td align="left">Pasuruan, {{date('d-m-Y')}}</td>	                            
 	                  </tr>
 	                  <tr height="60px">
 	                    <td width="70%" align="center"></td>
